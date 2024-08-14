@@ -20,7 +20,7 @@ const SignUp = () => {
 
     const submit = async () => {
         // Verifica se todos os campos estão preenchidos
-        if (!form.username || !form.email || !form.password) {
+        if (form.username === "" || form.email === "" || form.password === "") {
             Alert.alert('Erro', 'Preencha todos os campos para continuar');
         }
 
@@ -30,7 +30,8 @@ const SignUp = () => {
         try {
             const result = await createUser(form.email, form.password, form.username);
 
-            // Coloca o usuário no estado global
+            setUser(result);
+            setIsLoggedIn(true);
 
             router.replace('/home');
         } catch (error) {

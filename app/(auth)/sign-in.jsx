@@ -28,7 +28,8 @@ const SignIn = () => {
         try {
             const result = await signIn(form.email, form.password);
 
-            // Coloca o usuário no estado global
+            setUser(result);
+            setIsLoggedIn(true);
 
             router.replace('/home');
         } catch (error) {
